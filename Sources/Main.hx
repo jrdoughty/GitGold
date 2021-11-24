@@ -6,12 +6,14 @@ import kha.Scheduler;
 import echoes.Workflow;
 import components.*;
 import sprawl.AssetRepo;
+import kha.Window;
+import kha.WindowMode;
 
 class Main 
 {
-	public static var WIDTH = 900;
-	public static var HEIGHT = 698;
-	public static var PLAYAREAHEIGHT = 466;
+	public static var WIDTH = 480;
+	public static var HEIGHT = 270;
+	public static var PLAYAREAHEIGHT = 230;
 	public static function main() {
 		System.start({
 			title:"Git Gold",

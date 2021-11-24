@@ -21,7 +21,8 @@ class Project {
 	public static var highScore:Int = 0;
 	public static var lastScore:Int = 0;
 	public var stateStartFunctions:StringMap<Void->Void>;
-	public var updateTime:Float;
+	public static var updateTime:Float;
+	public static var newUpdate:Float;
 
 	public function new() 
 	{
@@ -38,9 +39,12 @@ class Project {
 
 	function update(): Void 
 	{
-		var newUpdate = Timer.stamp();
+		newUpdate = Timer.stamp();
 		var dt:Float = newUpdate - updateTime;
+		if(dt==0) dt = 0.0014358470524872;// JS sometimes will have the same time stamp two frames in a row. at that point, we don't want to update our systems with a 0 delta
+		
 		updateTime = newUpdate;
+
 		if(activeState != lastActiveState)
 		{
 			Workflow.reset();
@@ -69,14 +73,20 @@ class Project {
 			
 	public function initGameSystems() 
 	{
+		
 		Workflow.addSystem(new GameSystem());
 		Workflow.addSystem(new Controls());
-		Workflow.addSystem(new PhysicsSystem());
 		Workflow.addSystem(new IdleMovement());
 		Workflow.addSystem(new EnemyUnitCollision());
 		Workflow.addSystem(new DebrisUnitCollision());
 		Workflow.addSystem(new MoveToTargetPosition());
 		Workflow.addSystem(new CatcherCollectSystem());
+		
+		/*
+		Workflow.addSystem(new GYHSystem());
+		Workflow.addSystem(new GYHControls());
+		*/
+		Workflow.addSystem(new PhysicsSystem());
 		Workflow.addSystem(new Animation());
 		
 		//Renders after Animation stepping systems
@@ -86,7 +96,7 @@ class Project {
 		Workflow.addSystem(new UI(bufferCallback));
 		
 		//Add Inputs at the end because the update loop clears them 
-		Workflow.addSystem(new Keyboard());
+		Workflow.addSystem(new KeyboardReader());
 		Workflow.addSystem(new Mouse());
 		Workflow.addSystem(new GamePadSystem());
 	}
@@ -104,7 +114,7 @@ class Project {
 		Workflow.addSystem(new UI(bufferCallback));
 		
 		//Add Inputs at the end because the update loop clears them 
-		Workflow.addSystem(new Keyboard());
+		Workflow.addSystem(new KeyboardReader());
 		Workflow.addSystem(new Mouse());
 		Workflow.addSystem(new GamePadSystem());
 	}
@@ -117,7 +127,7 @@ class Project {
 		Workflow.addSystem(new UI(bufferCallback));
 		
 		//Add Inputs at the end because the update loop clears them 
-		Workflow.addSystem(new Keyboard());
+		Workflow.addSystem(new KeyboardReader());
 		Workflow.addSystem(new Mouse());
 		Workflow.addSystem(new GamePadSystem());
 	}

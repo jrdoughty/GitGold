@@ -45,7 +45,7 @@ class DebrisUnitCollision extends System
                     new Entity().add(c,
                         new ImageComp("coin"),
                         AnimComp.createAnimDataRange(0,0,Math.round(100)),
-                        new Angle(0));
+                        new Rotation(0));
                     Audio.play(AssetRepo.sounds.get("debris"));
                 }
                 debris.remove(Debris); 

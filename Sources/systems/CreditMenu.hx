@@ -30,7 +30,7 @@ class CreditMenu extends System
             new Visibility(),
             new ButtonComp('play'),
             new GamePad(0),
-            new KeyboardComp(),
+            new KeyboardState(),
             new MouseComp()
         );
         new Entity().add(
@@ -42,7 +42,7 @@ class CreditMenu extends System
             new Visibility(),
             new ButtonComp('menu'),
             new GamePad(0),
-            new KeyboardComp(),
+            new KeyboardState(),
             new MouseComp()
         );
         new Entity().add(

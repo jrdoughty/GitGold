@@ -58,7 +58,7 @@ class GameSystem extends System
             new Bounds2D(32,32),
             new Visibility(),
             new GamePad(0),
-            new KeyboardComp(),
+            new KeyboardState(),
             new MouseComp()
         );
         var i;
@@ -77,7 +77,7 @@ class GameSystem extends System
                     "thrown"=>AnimComp.createAnimDataRange(2,3,Math.round(speed)),
                     "dazed"=>AnimComp.createAnimDataRange(4,7,Math.round(speed))]),
                 new Visibility(),
-                new Angle(0),
+                new Rotation(0),
                 new Unit(Math.round(120 * Math.random()))
             );
         }
@@ -96,13 +96,13 @@ class GameSystem extends System
                     "idle"=>AnimComp.createAnimDataRange(2,2,Math.round(speed)),
                     "run"=>AnimComp.createAnimDataRange(0,3,Math.round(speed))]),
                 new Visibility(),
-                new Angle(0)//360 * Math.random())
+                new Rotation(0)//360 * Math.random())
             );
         }
         for(i in 0...120)
         {
             var c = new Circle(5);
-            var body = new Body(BodyType.STATIC, new Vec2((30 * i) % Main.WIDTH, Main.HEIGHT-100 - 30*Math.floor(i/30)));
+            var body = new Body(BodyType.STATIC, new Vec2((30 * i) % Main.WIDTH, Main.HEIGHT - 30*Math.floor(i/30)));
             if(Math.floor(i/30)%2==0)
                 body.position.x += 15;
             c.body = body;
@@ -112,7 +112,7 @@ class GameSystem extends System
                 new Visibility(),
                 new ImageComp("peg"),
                 AnimComp.createAnimDataRange(0,0,Math.round(100)),
-                new Angle(0));
+                new Rotation(0));
         }
         //floor
         var poly:Polygon = new Polygon(Polygon.rect(0,0,Main.WIDTH,10));
@@ -141,7 +141,7 @@ class GameSystem extends System
                         "idle"=>AnimComp.createAnimDataRange(0,0,Math.round(speed)),
                         "run"=>AnimComp.createAnimDataRange(0,3,Math.round(speed))]),
                     new Visibility(),
-                    new Angle(0),
+                    new Rotation(0),
                     new Catcher(Math.round(120),3)
                 );
             }
@@ -158,7 +158,7 @@ class GameSystem extends System
                         "idle"=>AnimComp.createAnimDataRange(3,5,Math.round(speed)),
                         "run"=>AnimComp.createAnimDataRange(0,2,Math.round(speed))]),
                     new Visibility(),
-                    new Angle(0),
+                    new Rotation(0),
                     new Catcher(Math.round(200),5)
                 );
             }
@@ -175,7 +175,7 @@ class GameSystem extends System
                         "idle"=>AnimComp.createAnimDataRange(0,0,Math.round(speed)),
                         "run"=>AnimComp.createAnimDataRange(0,2,Math.round(speed))]),
                     new Visibility(),
-                    new Angle(0),
+                    new Rotation(0),
                     new Catcher(Math.round(60),1)
                 );
             }
@@ -223,7 +223,7 @@ class GameSystem extends System
                         "idle"=>AnimComp.createAnimDataRange(2,2,Math.round(speed)),
                         "run"=>AnimComp.createAnimDataRange(0,3,Math.round(speed))]),
                     new Visibility(),
-                    new Angle(0)//360 * Math.random())
+                    new Rotation(0)//360 * Math.random())
                 );
             }
             t.remove('spawn');

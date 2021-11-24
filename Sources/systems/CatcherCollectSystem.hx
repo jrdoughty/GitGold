@@ -22,7 +22,7 @@ class CatcherCollectSystem extends System {
         
         for(i in circleView.entities)
         {
-            if(i.get(Death) == null && Utils.CenteredRectCircleOverlapTest(p, wh, new Position(i.get(Circle).body.position.x,i.get(Circle).body.position.y),i.get(Circle).radius))
+            if(i.get(Circle).body.type != BodyType.STATIC && i.get(Death) == null && Utils.CenteredRectCircleOverlapTest(p, wh, new Position(i.get(Circle).body.position.x,i.get(Circle).body.position.y),i.get(Circle).radius))
             {
                 i.destroy();
 

@@ -8,7 +8,7 @@ import echoes.View;
 import echoes.Entity;
 import sprawl.Utils;
 
-class Controls extends echoes.System
+class GYHControls extends echoes.System
 {
 	public static inline final speed:Int = 3;
     
@@ -18,30 +18,6 @@ class Controls extends echoes.System
 	@u public function updateK(p:Entity, pos:Position, playComp:Player, k:KeyboardState, s:Scale, ac:AnimComp, ad:AnimData)
 	{
 		playComp.framesUntil--;
-
-		if(playComp.framesUntil<=0 && (k.keysHeld[KeyCode.Up] || k.keysHeld[KeyCode.W]))
-		{
-			pos.y -= speed;
-			if(ac.idKey == 'idle')
-			{
-				p.remove(AnimComp);
-				p.add(ad.get('run'));
-			}
-		}
-		else if(playComp.framesUntil<=0 && (k.keysHeld[KeyCode.Down] || k.keysHeld[KeyCode.S]))
-		{
-			pos.y += speed;
-			if(ac.idKey == 'idle')
-			{
-				p.remove(AnimComp);
-				p.add(ad.get('run'));
-			}
-		}
-		else if(playComp.framesUntil<=0 && (ac.idKey != 'idle'))
-		{
-			p.remove(AnimComp);
-			p.add(ad.get('idle'));//will remain idle if right or left aren't touched
-		}
 
 		if(playComp.framesUntil<=0 && (k.keysHeld[KeyCode.Left] || k.keysHeld[KeyCode.A]))
 		{

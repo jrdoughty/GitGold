@@ -36,7 +36,7 @@ class StartMenu extends System
             new Visibility(),
             new ButtonComp('play'),
             new GamePad(0),
-            new KeyboardComp(),
+            new KeyboardState(),
             new MouseComp()
         );
         new Entity().add(
@@ -48,7 +48,7 @@ class StartMenu extends System
             new Visibility(.05,true),
             new ButtonComp('credits'),
             new GamePad(0),
-            new KeyboardComp(),
+            new KeyboardState(),
             new MouseComp()
         );
         new Entity().add(
